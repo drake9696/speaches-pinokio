@@ -7,11 +7,12 @@ module.exports = {
         message: "git clone https://github.com/speaches-ai/speaches app"
       }
     },
-    // Install uv using the official Windows installer
+    // Remove the uv version restriction so it works with any uv version
     {
       method: "shell.run",
       params: {
-        message: "powershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\""
+        message: "powershell -Command \"(Get-Content pyproject.toml) | Where-Object {$_ -notmatch 'required-uv|requires-uv'} | Set-Content pyproject.toml\"",
+        path: "app"
       }
     },
     // Install all dependencies
