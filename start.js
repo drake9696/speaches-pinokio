@@ -3,7 +3,7 @@ module.exports = {
     {
       method: "shell.run",
       params: {
-        message: "uv run python -m speaches",
+        message: "uv run uvicorn --factory --host 0.0.0.0 --port 8000 speaches.main:create_app",
         path: "app",
         env: {
           SPEACHES__HOST: "0.0.0.0",
