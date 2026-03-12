@@ -3,12 +3,15 @@ module.exports = {
     {
       method: "shell.run",
       params: {
-        message: "uv run uvicorn --factory --host 0.0.0.0 --port 8000 speaches.main:create_app",
-        path: "app",
-        env: {
-          SPEACHES__HOST: "0.0.0.0",
-          SPEACHES__PORT: "8000"
-        }
+        message: "if not exist cache\\HF_HOME\\hub mkdir cache\\HF_HOME\\hub",
+        path: "app"
+      }
+    },
+    {
+      method: "shell.run",
+      params: {
+        message: "set HF_HOME=cache\\HF_HOME&& set HF_HUB_DISABLE_SYMLINKS_WARNING=1&& set UVICORN_HOST=0.0.0.0&& set UVICORN_PORT=8000&& set ENABLE_UI=true&& set PRELOAD_MODELS=[\"Systran/faster-distil-whisper-large-v3\"]&& uv run uvicorn --factory speaches.main:create_app",
+        path: "app"
       }
     },
     {
