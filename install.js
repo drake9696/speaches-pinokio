@@ -7,11 +7,11 @@ module.exports = {
         message: "git clone https://github.com/speaches-ai/speaches app"
       }
     },
-    // Remove the uv version restriction so it works with any uv version
+    // Remove uv version restriction using Python
     {
       method: "shell.run",
       params: {
-        message: "powershell -Command \"(Get-Content pyproject.toml) | Where-Object {$_ -notmatch 'required-uv|requires-uv'} | Set-Content pyproject.toml\"",
+        message: "python -c \"content=open('pyproject.toml').read(); content='\\n'.join(l for l in content.splitlines() if 'required-version' not in l); open('pyproject.toml','w').write(content)\"",
         path: "app"
       }
     },
@@ -19,7 +19,7 @@ module.exports = {
     {
       method: "shell.run",
       params: {
-        message: "uv sync",
+        message: "uv sync --frozen",
         path: "app"
       }
     },
