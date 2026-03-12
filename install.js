@@ -7,12 +7,11 @@ module.exports = {
         message: "git clone https://github.com/speaches-ai/speaches app"
       }
     },
-    // Install uv (fast Python package manager)
+    // Install uv using the official Windows installer
     {
       method: "shell.run",
       params: {
-        message: "pip install uv",
-        path: "app"
+        message: "powershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\""
       }
     },
     // Install all dependencies
@@ -23,7 +22,6 @@ module.exports = {
         path: "app"
       }
     },
-    // Done
     {
       method: "notify",
       params: {
